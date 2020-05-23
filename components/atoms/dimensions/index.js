@@ -1,5 +1,6 @@
 export default {
-  appBar: {
-    height: 128,
+  height: {
+    navBar: 47,
+    toolBar: 72,
   },
 };

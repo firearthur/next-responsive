@@ -1,5 +1,8 @@
 export default {
-  card: {
-    radius: 40,
+  radius: {
+    card: 40,
+  },
+  border: {
+    nav: '1px solid',
   },
 };

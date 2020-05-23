@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles, IconButton } from '../../../lib';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import { makeStyles, IconButton, Button } from '../../../lib';
 import getStyles from './styles';
+import NavLink from '../../atoms/nav-link';
+import NavBar from '../nav-bar';
 import { useTranslation } from '../../../i18n';
 
 const useStyles = makeStyles(getStyles, { name: 'AppBar' });
@@ -12,12 +15,21 @@ const useStyles = makeStyles(getStyles, { name: 'AppBar' });
  * Main nav bar appearing at the top of the page
  */
 
-const AppBar = ({ onMenuButtonClick, logoPath, color = 'transparent' }) => {
-  const { appBar, menuButton, logo } = useStyles();
+const AppBar = ({
+  navBarLinks, toolBarLinks, onMenuButtonClick, logoPath,
+}) => {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    // target: window ? window() : undefined,
+  });
+
+  const { appBar, menuButton, logo, midNav, signUpButton, toolBar } = useStyles();
   const { t: commonT } = useTranslation('common');
   return (
-    <MuiAppBar color={color} elevation={0} position="fixed" className={appBar}>
-      <Toolbar>
+    <MuiAppBar elevation={0} position="fixed" className={appBar}>
+      <NavBar links={navBarLinks} />
+      <Toolbar className={toolBar}>
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -28,6 +40,12 @@ const AppBar = ({ onMenuButtonClick, logoPath, color = 'transparent' }) => {
           <MenuIcon />
         </IconButton>
         <img className={logo} src={logoPath} alt={commonT('appBar/logo/alt/navBarLogoDescription')} />
+        <div className={midNav}>
+          {toolBarLinks.map(({ text, href }) => (
+            <NavLink hideLeftPadding hideBorder key={text} text={text} href={href} />
+          ))}
+        </div>
+        <Button className={signUpButton}>{commonT('appBar/button/text/signUp')}</Button>
       </Toolbar>
     </MuiAppBar>
   );
@@ -38,9 +56,20 @@ AppBar.getInitialProps = async () => ({
 });
 
 AppBar.propTypes = {
+  navBarLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string,
+      text: PropTypes.string,
+    }),
+  ).isRequired,
+  toolBarLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string,
+      text: PropTypes.string,
+    }),
+  ).isRequired,
   onMenuButtonClick: PropTypes.func,
   logoPath: PropTypes.string.isRequired,
-  color: PropTypes.string,
 };
 
 export default AppBar;

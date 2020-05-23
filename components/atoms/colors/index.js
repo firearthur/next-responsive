@@ -23,7 +23,7 @@ export default {
     // light: '#757ce8',
     // dark: '#002884',
     // contrastText: '#fff',
-    main: deepPurple[500],
+    main: '#0069d2',
   },
   secondary: {
     main: lightBlue[900],
@@ -32,10 +32,19 @@ export default {
     main: red.A400,
   },
   customColors: {
+    borderGrey: {
+      main: '#d5d6d6',
+    },
+    navText: {
+      main: 'rgba(46,49,52,0.8)',
+    },
     backgroundGrey: {
       main: grey[100],
     },
     backgroundWhite: {
+      main: COLORS_CONSTANTS.white,
+    },
+    textWhite: {
       main: COLORS_CONSTANTS.white,
     },
     foregroundBlueGrey: {

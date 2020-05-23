@@ -1,6 +1,6 @@
 export default theme => {
-  const sm = theme.breakpoints.up('sm');
   const xs = theme.breakpoints.up('xs');
+  const sm = theme.breakpoints.up('sm');
   return ({
     root: {
       transition: 'width .5s linear',

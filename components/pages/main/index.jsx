@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import MainTemplate from '../../templates/main';
 import Footer from '../../organisms/footer';
 import AppBar from '../../organisms/app-bar';
+import {useTranslation} from '../../../i18n';
 
 /**
  * Represents the common page layout and structure
@@ -24,7 +25,21 @@ const MainPage = ({
   appBarProps = {},
   footerProps = {},
 }) => {
-  const APP_LOGO_PATH = 'static/images/logo.png';
+  const { t: commonT } = useTranslation('common');
+  const APP_LOGO_PATH = `${process.env.IMAGE_ASSETS_PATH}logo.png`;
+  const NAV_BAR_LINKS = [
+    { text: commonT('appBar/navBar/links/blog'), href: '' },
+    { text: commonT('appBar/navBar/links/nourish'), href: '' },
+    { text: commonT('appBar/navBar/links/shop'), href: '' },
+  ];
+
+  const TOOL_BAR_LINKS = [
+    { text: commonT('appBar/toolBar/links/exercise'), href: '' },
+    { text: commonT('appBar/toolBar/links/nutrition'), href: '' },
+    { text: commonT('appBar/toolBar/links/activity'), href: '' },
+    { text: commonT('appBar/toolBar/links/sleep'), href: '' },
+  ];
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -43,7 +58,9 @@ const MainPage = ({
 
       navBar={(
         <AppBar
+          toolBarLinks={TOOL_BAR_LINKS}
           logoPath={APP_LOGO_PATH}
+          navBarLinks={NAV_BAR_LINKS}
           onMenuButtonClick={handleDrawerToggle}
           {...appBarProps}
         />
@@ -64,6 +81,10 @@ const MainPage = ({
 
 
 export default MainPage;
+
+MainPage.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+});
 
 MainPage.propTypes = {
   children: PropTypes.oneOfType([

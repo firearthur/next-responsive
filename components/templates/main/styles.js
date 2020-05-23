@@ -18,10 +18,11 @@ export default theme => {
         minHeight: `calc(100vh - ${theme.mixins.toolbar[sm].minHeight}px)`,
       },
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+      minHeight: `${theme.dimensions.height.navBar + theme.dimensions.height.toolBar}px`
+    },
     content: {
       flexGrow: 1,
-      padding: `0 ${theme.spacing(2)}`,
     },
   });
 };

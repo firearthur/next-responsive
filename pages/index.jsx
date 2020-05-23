@@ -17,11 +17,16 @@ const Index = () => {
   ];
 
   const { t: commonT } = useTranslation('common');
-  const { paragraph, icons } = useStyles();
+  const { hero, joinButton, heroContent, heroParagraph } = useStyles();
 
   return (
-    <MainPage title={commonT('pageTitle')}>
-      <p className={paragraph}>index page</p>
+    <MainPage title={commonT('pageTitles/index')}>
+      <div className={hero}>
+        <div className={heroContent}>
+          <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
+          <Button className={joinButton}>{commonT('pages/index/hero/joinButton/joinIfitCoach')}</Button>
+        </div>
+      </div>
       <Button onClick={() => i18n.changeLanguage(i18n.language === 'en-US' ? 'es-US' : 'en-US')}>
         Change language
       </Button>
