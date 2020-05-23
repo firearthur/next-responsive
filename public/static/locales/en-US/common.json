@@ -1,0 +1,11 @@
+{
+  "pageTitle": "Title",
+  "appBar/logo/alt/navBarLogoDescription": "Fill me out",
+  "test": "Translation works if you can see this",
+  "pages/errors/404/main": "404 buddy!",
+  "h1": "A simple example",
+  "change-locale": "Change locale",
+  "to-second-page": "To second page",
+  "error-with-status": "A {{statusCode}} error occurred on server",
+  "error-without-status": "An error occurred on the server"
+}

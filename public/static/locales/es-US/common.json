@@ -1,0 +1,11 @@
+{
+  "pageTitle": "[spanish] Title",
+  "appBar/logo/alt/navBarLogoDescription": "[spanish] Fill me out",
+  "test": "[spanish] Translation works if you can see this",
+  "pages/errors/404/main": "[spanish] 404 buddy!",
+  "h1": "[spanish] A simple example",
+  "change-locale": "[spanish] Change locale",
+  "to-second-page": "[spanish] To second page",
+  "error-with-status": "[spanish] A {{statusCode}} error occurred on server",
+  "error-without-status": "[spanish] An error occurred on the server"
+}
