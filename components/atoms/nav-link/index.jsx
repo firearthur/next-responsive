@@ -14,22 +14,31 @@ const NavLink = ({
   href = '',
   hideBorder = false,
   hideLeftPadding = false,
+  navTextCustomStyles,
+  iconPath,
+  iconTitle,
 }) => {
   const { root, navText } = useStyles();
 
   return (
     <div className={classNames(root, { hideBorder }, { hideLeftPadding })}>
       <Link href={href}>
-        <a className={navText}>{text}</a>
+        <a className={classNames(navTextCustomStyles, navText)}>
+          {text}
+          { iconPath && <img src={iconPath} alt={iconTitle} />}
+        </a>
       </Link>
     </div>
   );
 };
 
 NavLink.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   href: PropTypes.string.isRequired,
+  navTextCustomStyles: PropTypes.string,
   hideBorder: PropTypes.bool,
+  iconPath: PropTypes.string,
+  iconTitle: PropTypes.string,
   hideLeftPadding: PropTypes.bool,
 };
 

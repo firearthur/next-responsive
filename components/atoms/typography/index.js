@@ -15,8 +15,9 @@ export const LINE_HEIGHTS = {
  */
 export default {
   fontFamily: 'Open Sans, Helvetica, sans-serif',
+  fontWeights: FONT_WEIGHT,
   navLink: {
-    fontWeight: FONT_WEIGHT.semiBold,
+    fontWeight: FONT_WEIGHT.normal,
     fontSize: '1rem',
     lineHeight: LINE_HEIGHTS.normal,
     textTransform: 'uppercase',

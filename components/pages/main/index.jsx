@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import MainTemplate from '../../templates/main';
 import Footer from '../../organisms/footer';
 import AppBar from '../../organisms/app-bar';
-import {useTranslation} from '../../../i18n';
+import { useTranslation } from '../../../i18n';
 
 /**
  * Represents the common page layout and structure
@@ -26,7 +26,8 @@ const MainPage = ({
   footerProps = {},
 }) => {
   const { t: commonT } = useTranslation('common');
-  const APP_LOGO_PATH = `${process.env.IMAGE_ASSETS_PATH}/logo.png`;
+  const baseAssetPath = process.env.IMAGE_ASSETS_PATH;
+  const APP_LOGO_PATH = `${baseAssetPath}/logo.png`;
   const NAV_BAR_LINKS = [
     { text: commonT('appBar/navBar/links/blog'), href: '' },
     { text: commonT('appBar/navBar/links/nourish'), href: '' },
@@ -40,6 +41,74 @@ const MainPage = ({
     { text: commonT('appBar/toolBar/links/sleep'), href: '' },
   ];
 
+  const FOOTER_NAV_LINKS = [
+    {
+      title: commonT('footer/footerNav/title/company'),
+      links: [
+        { text: commonT('footer/footerNav/company/link/about'), href: '' },
+        { text: commonT('footer/footerNav/company/link/contactUs'), href: '' },
+        { text: commonT('footer/footerNav/company/link/careers'), href: '' },
+      ],
+    },
+    {
+      title: commonT('footer/footerNav/title/account'),
+      links: [
+        { text: commonT('footer/footerNav/company/link/logIn'), href: '' },
+        { text: commonT('footer/footerNav/company/link/createAccount'), href: '' },
+      ],
+    },
+    {
+      title: commonT('footer/footerNav/title/support'),
+      links: [
+        { text: commonT('footer/footerNav/company/link/helpCenter'), href: '' },
+        { text: commonT('footer/footerNav/company/link/accessibility'), href: '' },
+      ],
+    },
+  ];
+
+  const FOOTER_SOCIAL_MEDIA = [
+    {
+      iconPath: `${baseAssetPath}/yt.png`,
+      title: 'YouTube',
+      href: '',
+    },
+    {
+      iconPath: `${baseAssetPath}/p.png`,
+      title: 'Pinterest',
+      href: '',
+    },
+    {
+      iconPath: `${baseAssetPath}/f.png`,
+      title: 'FaceBook',
+      href: '',
+    },
+    {
+      iconPath: `${baseAssetPath}/t.png`,
+      title: 'Twitter',
+      href: '',
+    },
+    {
+      iconPath: `${baseAssetPath}/i.png`,
+      title: 'Instagram',
+      href: '',
+    },
+  ];
+
+  const FOOTER_LEGAL_LINKS = [
+    {
+      text: commonT('footer/footerLegal/link/allRights'),
+      href: '',
+    },
+    {
+      text: commonT('footer/footerLegal/link/privacyPolicy'),
+      href: '',
+    },
+    {
+      text: commonT('footer/footerLegal/link/termsOfUse'),
+      href: '',
+    },
+  ];
+  
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -55,7 +124,6 @@ const MainPage = ({
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
       )}
-
       navBar={(
         <AppBar
           toolBarLinks={TOOL_BAR_LINKS}
@@ -65,20 +133,22 @@ const MainPage = ({
           {...appBarProps}
         />
       )}
-
-
       footer={
         showFooter
-        && (
-          customFooter || <Footer {...footerProps} />
-        )
+        && (customFooter || (
+          <Footer
+            legalLinks={FOOTER_LEGAL_LINKS}
+            socialLinks={FOOTER_SOCIAL_MEDIA}
+            navLinks={FOOTER_NAV_LINKS}
+            {...footerProps}
+          />
+        ))
       }
     >
       {children}
     </MainTemplate>
   );
 };
-
 
 export default MainPage;
 
@@ -87,10 +157,7 @@ MainPage.getInitialProps = async () => ({
 });
 
 MainPage.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   customFooter: PropTypes.node,
   showFooter: PropTypes.bool,
   title: PropTypes.string,

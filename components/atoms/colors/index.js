@@ -1,5 +1,5 @@
 import {
-  red, deepPurple, lightBlue, grey, blueGrey,
+  red, lightBlue, blueGrey,
 } from '@material-ui/core/colors';
 
 /**
@@ -39,7 +39,7 @@ export default {
       main: 'rgba(46,49,52,0.8)',
     },
     backgroundGrey: {
-      main: grey[100],
+      main: '#2e3134',
     },
     overlayBlue: {
       main: 'rgba(0,12,40,0.54)',

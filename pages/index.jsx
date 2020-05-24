@@ -187,7 +187,7 @@ const Index = () => {
   ];
 
   return (
-    <MainPage title={commonT('pageTitles/index')}>
+    <MainPage showFooter title={commonT('pageTitles/index')}>
       <div className={hero}>
         <div className={heroContent}>
           <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
