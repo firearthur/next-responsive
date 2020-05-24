@@ -26,7 +26,7 @@ const MainPage = ({
   footerProps = {},
 }) => {
   const { t: commonT } = useTranslation('common');
-  const APP_LOGO_PATH = `${process.env.IMAGE_ASSETS_PATH}logo.png`;
+  const APP_LOGO_PATH = `${process.env.IMAGE_ASSETS_PATH}/logo.png`;
   const NAV_BAR_LINKS = [
     { text: commonT('appBar/navBar/links/blog'), href: '' },
     { text: commonT('appBar/navBar/links/nourish'), href: '' },

@@ -27,10 +27,4 @@ export default {
     fontSize: '4.5rem',
     lineHeight: LINE_HEIGHTS.veryHigh,
   },
-  body: {
-    fontFamily: 'Arial, Helvetica, sans-serif',
-    fontWeight: FONT_WEIGHT.normal,
-    fontSize: '1rem',
-    lineHeight: LINE_HEIGHTS.normal,
-  },
 };

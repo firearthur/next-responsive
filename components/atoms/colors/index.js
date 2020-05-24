@@ -41,11 +41,17 @@ export default {
     backgroundGrey: {
       main: grey[100],
     },
+    overlayBlue: {
+      main: 'rgba(0,12,40,0.54)',
+    },
     backgroundWhite: {
       main: COLORS_CONSTANTS.white,
     },
     textWhite: {
       main: COLORS_CONSTANTS.white,
+    },
+    titleGrey: {
+      main: '#2e3134',
     },
     foregroundBlueGrey: {
       main: blueGrey[200],
