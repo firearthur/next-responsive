@@ -35,6 +35,9 @@ export default theme => {
       position: 'absolute',
       left: theme.spacing(2),
     },
+    languageDropdownRoot: {
+      color: theme.palette.customColors.textWhite.main
+    },
     navRoot: {
       [xs]: {
         flexBasis: '50%',

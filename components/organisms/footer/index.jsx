@@ -15,6 +15,7 @@ const Footer = ({
   navLinks,
   socialLinks,
   legalLinks,
+  languageProps,
 }) => {
   const { root, desktopNav, mobileNav } = useStyles();
 
@@ -23,7 +24,7 @@ const Footer = ({
       <FooterNavDesktop className={desktopNav} navLinks={navLinks} />
       {/* <FooterNavMobile className={mobileNav} navLinks={navLinks} /> */}
       <FooterSocial links={socialLinks} />
-      <FooterLegal links={legalLinks} />
+      <FooterLegal {...languageProps} links={legalLinks} />
     </footer>
   );
 };

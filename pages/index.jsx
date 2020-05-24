@@ -247,11 +247,6 @@ const Index = () => {
           ))}
         </Grid>
       </div>
-
-      <Button onClick={() => i18n.changeLanguage(i18n.language === 'en-US' ? 'es-US' : 'en-US')}>
-        Change language
-      </Button>
-      <p>{commonT('test')}</p>
     </MainPage>
   );
 

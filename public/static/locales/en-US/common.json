@@ -32,6 +32,7 @@
   "footer/footerLegal/link/allRights" : "© iFit.com. All Rights Reserved.",
   "footer/footerLegal/link/privacyPolicy": "Privacy Policy",
   "footer/footerLegal/link/termsOfUse": "Terms of Use",
+  "footer/footerLegal/languageDropdown/chevron/description/whiteChevronFacingDown": "White chevron facing down",
   "test": "Translation works if you can see this",
   "pages/errors/404/main": "404 buddy!",
   "h1": "A simple example",

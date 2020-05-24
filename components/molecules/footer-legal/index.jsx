@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { makeStyles, Grid } from '../../../lib';
 import NavLink from '../../atoms/nav-link';
+import Dropdown from '../../organisms/dropdown';
 import getStyles from './styles';
 
 const useStyles = makeStyles(getStyles, { name: 'FooterLegal' });
@@ -8,20 +9,33 @@ const useStyles = makeStyles(getStyles, { name: 'FooterLegal' });
 /**
  * Basic FooterLegal component
  */
-const FooterLegal = ({
-  links,
-}) => {
+const FooterLegal = ({ links, languageOptions, languageChangeHandler, currentLanguage }) => {
   const {
-    root, legalLinksContainer, languageDropdown, legalLinks, navRoot, navRootFullRow
+    root,
+    legalLinksContainer,
+    languageDropdown,
+    legalLinks,
+    navRoot,
+    navRootFullRow,
+    languageDropdownRoot,
   } = useStyles();
   return (
     <Grid container justify="center" alignItems="center" className={root}>
-      <div className={languageDropdown}>English</div>
+      <Dropdown
+        classesOverride={{
+          root: languageDropdownRoot,
+          icon: languageDropdownRoot,
+        }}
+        className={languageDropdown}
+        initialSelection={currentLanguage}
+        options={languageOptions}
+        onChange={languageChangeHandler}
+      />
       <Grid item xs={12}>
         <div className={legalLinksContainer}>
           {links.map(({ text, href }, i) => (
             <NavLink
-              rootCustomStyles={ i === 0 ? navRootFullRow : navRoot}
+              rootCustomStyles={i === 0 ? navRootFullRow : navRoot}
               navTextCustomStyles={legalLinks}
               hideBorder
               hideLeftPadding
@@ -44,6 +58,5 @@ FooterLegal.propTypes = {
     }),
   ),
 };
-
 
 export default FooterLegal;

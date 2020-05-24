@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import MainTemplate from '../../templates/main';
 import Footer from '../../organisms/footer';
 import AppBar from '../../organisms/app-bar';
-import { useTranslation } from '../../../i18n';
+import { useTranslation, i18n } from '../../../i18n';
 
 /**
  * Represents the common page layout and structure
@@ -108,7 +108,20 @@ const MainPage = ({
       href: '',
     },
   ];
-  
+
+  const availableLanguages = process.env.AVAILABLE_LANGUAGES || [];
+  const languageOptions = availableLanguages.map(l => ({ value: l.code, text: l.language }));
+  const languageChangeHandler = selectedLanguage => {
+    i18n.changeLanguage(selectedLanguage);
+  };
+  const currentLanguage = i18n.language;
+
+  const FOOTER_LANGUAGE_PROPS = {
+    languageOptions,
+    languageChangeHandler,
+    currentLanguage,
+  };
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -140,6 +153,7 @@ const MainPage = ({
             legalLinks={FOOTER_LEGAL_LINKS}
             socialLinks={FOOTER_SOCIAL_MEDIA}
             navLinks={FOOTER_NAV_LINKS}
+            languageProps={FOOTER_LANGUAGE_PROPS}
             {...footerProps}
           />
         ))
