@@ -14,9 +14,16 @@ const useStyles = makeStyles(getStyles, { name: 'Index' });
 const Index = () => {
   const { t: commonT } = useTranslation('common');
   const {
-    hero, joinButton, heroContent, heroParagraph, gridContainer, gridWrapper, equipmentContainer, equipmentWrapper, equipmentsTitle
+    hero,
+    joinButton,
+    heroContent,
+    heroParagraph,
+    gridContainer,
+    gridWrapper,
+    equipmentContainer,
+    equipmentWrapper,
+    equipmentsTitle,
   } = useStyles();
-
 
   const slidesData = [
     { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '111' },
@@ -30,7 +37,9 @@ const Index = () => {
 
   const gridCardsData = [
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-1.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-1.png`,
@@ -46,10 +55,19 @@ const Index = () => {
       overlayIcon: '',
       overlayTitle: '',
       overlayCount: '',
-      buttons: [{ text: 'view more', clickHandler: () => { console.log('view more'); } }],
+      buttons: [
+        {
+          text: 'view more',
+          clickHandler: () => {
+            console.log('view more');
+          },
+        },
+      ],
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-2.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-2.png`,
@@ -64,7 +82,9 @@ const Index = () => {
       overlayCount: '9',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-3.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-3.png`,
@@ -81,7 +101,9 @@ const Index = () => {
       overlayCount: '',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-4.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-4.png`,
@@ -96,7 +118,9 @@ const Index = () => {
       overlayCount: '12',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-5.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-5.png`,
@@ -114,7 +138,9 @@ const Index = () => {
       overlayCount: '',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-6.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-6.png`,
@@ -129,7 +155,9 @@ const Index = () => {
       overlayCount: '12',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-7.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-7.png`,
@@ -147,7 +175,9 @@ const Index = () => {
       overlayCount: '',
     },
     {
-      onClick: () => { console.log('clicked one'); },
+      onClick: () => {
+        console.log('clicked one');
+      },
       mainImgPath: `${baseAssetPath}/card-8.png`,
       mainImgTitle: commonT('pages/index/cards/mainImageTitle/one'),
       avatarPath: `${baseAssetPath}/avatar-8.png`,
@@ -191,20 +221,30 @@ const Index = () => {
       <div className={hero}>
         <div className={heroContent}>
           <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
-          <Button className={joinButton}>{commonT('pages/index/hero/joinButton/joinIfitCoach')}</Button>
+          <Button className={joinButton}>
+            {commonT('pages/index/hero/joinButton/joinIfitCoach')}
+          </Button>
         </div>
       </div>
 
       <div className={gridContainer}>
         <Grid className={gridWrapper} container spacing={1}>
-          {gridCardsData.map((cardProps, i) => <Grid key={i} item sm={3} xs={12}><Card {...cardProps} /></Grid>)}
+          {gridCardsData.map((cardProps, i) => (
+            <Grid key={i} item container justify="center" sm={3} xs={12}>
+              <Card {...cardProps} />
+            </Grid>
+          ))}
         </Grid>
       </div>
 
       <h2 className={equipmentsTitle}>{commonT('pages/index/equipmentsTitle/enabled')}</h2>
       <div className={equipmentContainer}>
         <Grid className={equipmentWrapper} container spacing={1}>
-          {equipmentCardsData.map((cardProps, i) => <Grid key={i} item sm={3} xs={12}><BasicCard {...cardProps} /></Grid>)}
+          {equipmentCardsData.map((cardProps, i) => (
+            <Grid key={i} item sm={3} xs={12}>
+              <BasicCard {...cardProps} />
+            </Grid>
+          ))}
         </Grid>
       </div>
 

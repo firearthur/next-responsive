@@ -17,7 +17,7 @@ const MainTemplate = ({
   children,
 }) => {
   const {
-    contentContainer, content, toolbar, root,
+    contentContainer, content, toolBar, root,
   } = useStyles();
 
 
@@ -25,8 +25,8 @@ const MainTemplate = ({
     <div className={root}>
       {head}
       {navBar}
-      {/* toolbar is a clear for the app bar */}
-      <div className={toolbar} />
+      {/* toolBar is a clear for the app bar */}
+      <div className={toolBar} />
       <div className={contentContainer}>
         <main className={content}>
           {children}

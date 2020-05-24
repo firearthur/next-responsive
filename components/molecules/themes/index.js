@@ -4,6 +4,7 @@ import typography from '../../atoms/typography';
 import dimensions from '../../atoms/dimensions';
 import shapes from '../../atoms/shapes';
 import spacing from '../../atoms/spacing';
+import mixins from '../../atoms/mixins';
 
 /**
  * This is where style-guide and general theme properties live
@@ -12,6 +13,7 @@ import spacing from '../../atoms/spacing';
  * Try to log the theme object in one of the style.js files you'll see
  */
 const theme = createMuiTheme({
+  customMixins: mixins,
   palette: colors,
   spacing,
   typography,

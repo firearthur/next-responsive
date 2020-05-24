@@ -5,6 +5,12 @@ export default theme => {
     root: {
       background: 'transparent',
       color: theme.palette.customColors.textWhite.main,
+      [xs]: {
+        height: 'auto'
+      },
+      [sm]: {
+        height: '64px',
+      },
       height: '64px',
       width: '100%',
       // [xs]: {
@@ -15,6 +21,12 @@ export default theme => {
       // },
     },
     legalLinksContainer: {
+      [xs]: {
+        flexWrap: 'wrap',
+      },
+      [sm]: {
+        flexWrap: 'nowrap',
+      },
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -22,6 +34,40 @@ export default theme => {
     languageDropdown: {
       position: 'absolute',
       left: theme.spacing(2),
+    },
+    navRoot: {
+      [xs]: {
+        flexBasis: '50%',
+        paddingRight: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+      },
+      [sm]: {
+        flexBasis: 'auto',
+        paddingRight: theme.spacing(3),
+        paddingTop: 0,
+        paddingBottom: 0,
+      }
+    },
+    navRootFullRow: {
+      [xs]: {
+        flexBasis: '100%',
+        paddingRight: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+      },
+      [sm]: {
+        flexBasis: 'auto',
+        paddingRight: theme.spacing(3),
+        paddingTop: 0,
+        paddingBottom: 0,
+      }
     },
     legalLinks: {
       color: theme.palette.customColors.textWhite.main,

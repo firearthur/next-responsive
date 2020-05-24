@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles, IconButton, Button } from '../../../lib';
 import getStyles from './styles';
 import NavLink from '../../atoms/nav-link';
@@ -16,19 +15,15 @@ const useStyles = makeStyles(getStyles, { name: 'AppBar' });
  */
 
 const AppBar = ({
-  navBarLinks, toolBarLinks, onMenuButtonClick, logoPath,
+  navBarLinks, toolBarLinks, onMenuButtonClick, logoPath, hideNavBar
 }) => {
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    // target: window ? window() : undefined,
-  });
 
-  const { appBar, menuButton, logo, midNav, signUpButton, toolBar } = useStyles();
+
+  const { appBar, menuButton, logo, midNav, signUpButton, toolBar, navBar } = useStyles();
   const { t: commonT } = useTranslation('common');
   return (
     <MuiAppBar elevation={0} position="fixed" className={appBar}>
-      <NavBar links={navBarLinks} />
+      <NavBar className={navBar} links={navBarLinks} />
       <Toolbar className={toolBar}>
         <IconButton
           color="inherit"

@@ -12,15 +12,16 @@ const FooterLegal = ({
   links,
 }) => {
   const {
-    root, legalLinksContainer, languageDropdown, legalLinks,
+    root, legalLinksContainer, languageDropdown, legalLinks, navRoot, navRootFullRow
   } = useStyles();
   return (
     <Grid container justify="center" alignItems="center" className={root}>
       <div className={languageDropdown}>English</div>
       <Grid item xs={12}>
         <div className={legalLinksContainer}>
-          {links.map(({ text, href }) => (
+          {links.map(({ text, href }, i) => (
             <NavLink
+              rootCustomStyles={ i === 0 ? navRootFullRow : navRoot}
               navTextCustomStyles={legalLinks}
               hideBorder
               hideLeftPadding

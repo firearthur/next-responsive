@@ -14,6 +14,7 @@ const NavLink = ({
   href = '',
   hideBorder = false,
   hideLeftPadding = false,
+  rootCustomStyles,
   navTextCustomStyles,
   iconPath,
   iconTitle,
@@ -21,7 +22,7 @@ const NavLink = ({
   const { root, navText } = useStyles();
 
   return (
-    <div className={classNames(root, { hideBorder }, { hideLeftPadding })}>
+    <div className={classNames(rootCustomStyles, root, { hideBorder }, { hideLeftPadding })}>
       <Link href={href}>
         <a className={classNames(navTextCustomStyles, navText)}>
           {text}
@@ -40,6 +41,7 @@ NavLink.propTypes = {
   iconPath: PropTypes.string,
   iconTitle: PropTypes.string,
   hideLeftPadding: PropTypes.bool,
+  rootCustomStyles: PropTypes.string,
 };
 
 

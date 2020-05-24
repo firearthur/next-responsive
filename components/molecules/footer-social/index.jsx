@@ -9,7 +9,7 @@ const useStyles = makeStyles(getStyles, { name: 'FooterSocial' });
  * Basic FooterSocial component
  */
 const FooterSocial = ({ links }) => {
-  const { root, mediaList, listItem } = useStyles();
+  const { root, mediaList, listItem, navLinkRoot } = useStyles();
 
   return (
     <div className={root}>
@@ -17,6 +17,7 @@ const FooterSocial = ({ links }) => {
         {links.map(({ iconPath, title, href }) => (
           <li key={title} className={listItem}>
             <NavLink
+              rootCustomStyles={navLinkRoot}
               iconTitle={title}
               iconPath={iconPath}
               href={href}

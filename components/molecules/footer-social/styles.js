@@ -14,6 +14,14 @@ export default theme => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-    }
+    },
+    navLinkRoot: {
+      [xs]: {
+        paddingRight: theme.spacing(1),
+      },
+      [sm]: {
+        paddingRight: theme.spacing(3),
+      },
+    },
   });
 };

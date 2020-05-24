@@ -1,6 +1,6 @@
 export default (theme) => ({
   root: {
-    maxWidth: '288px',
+    width: '288px',
     height: '300px',
   },
   media: {

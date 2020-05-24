@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import NavLink from '../../atoms/nav-link';
+import classNames from 'classnames';
 import { makeStyles } from '../../../lib';
 import getStyles from './styles';
 
@@ -10,11 +11,12 @@ const useStyles = makeStyles(getStyles, { name: 'NavBar' });
  */
 const NavBar = ({
   links,
+  className,
 }) => {
   const { root } = useStyles();
 
   return (
-    <nav className={root}>
+    <nav className={classNames(className, root)}>
       {links.map(({ text, href }) => <NavLink key={text} text={text} href={href} />)}
     </nav>
   );
@@ -27,6 +29,7 @@ NavBar.propTypes = {
       text: PropTypes.string,
     }),
   ).isRequired,
+  className: PropTypes.string,
 };
 
 
