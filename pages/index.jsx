@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Fade from '@material-ui/core/Fade';
 import Zoom from '@material-ui/core/Zoom';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { useTranslation, i18n } from '../i18n';
 import IntersectionObserver from '../components/molecules/intersection-observer';
 // eslint-disable-next-line import/named
@@ -29,14 +28,6 @@ const Index = () => {
     equipmentsTitle,
   } = useStyles();
   const [hideNavBar, setHideNavBar] = useState(false);
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 1,
-  });
-
-  if (hideNavBar && !trigger) {
-    setHideNavBar(false);
-  }
 
   const slidesData = [
     { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '111' },
@@ -230,10 +221,11 @@ const Index = () => {
   ];
 
   const handleScrollPassedHero = (e) => {
-    const { isIntersecting, boundingClientRect } = e[0];
-    console.log('e[0]', e[0]);
+    const { isIntersecting, boundingClientRect, intersectionRect } = e[0];
     if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) {
       setHideNavBar(true);
+    } else if(!isIntersecting && intersectionRect.y === 0) {
+      setHideNavBar(false);
     }
   };
 
