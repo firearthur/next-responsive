@@ -4,7 +4,10 @@ export default theme => {
   return ({
     root: {
       transition: 'width .5s linear',
-      background: 'red',
+      width: '440px',
+      height: '184px',
+      background: theme.palette.customColors.backgroundWhite.main,
+      boxShadow: theme.shapes.boxShadow.card,
       // [xs]: {
       //   width: '220px',
       // },

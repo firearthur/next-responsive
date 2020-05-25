@@ -40,6 +40,7 @@ export default {
     },
     backgroundGrey: {
       main: '#2e3134',
+      light: '#f4f5f7',
     },
     overlayBlue: {
       main: 'rgba(0,12,40,0.54)',
@@ -53,7 +54,7 @@ export default {
     titleGrey: {
       main: '#2e3134',
     },
-    buttonHoverPrimary:{
+    buttonHoverPrimary: {
       main: 'rgb(17, 82, 147)',
     },
     foregroundBlueGrey: {

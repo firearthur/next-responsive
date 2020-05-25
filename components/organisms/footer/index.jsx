@@ -33,7 +33,7 @@ Footer.propTypes = {
   navLinks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     links: PropTypes.arrayOf(PropTypes.shape(
-      {text: PropTypes.string.isRequired, href: PropTypes.string.isRequired}
+      { text: PropTypes.string.isRequired, href: PropTypes.string.isRequired },
     )).isRequired,
   })),
   socialLinks: PropTypes.arrayOf(PropTypes.shape({

@@ -6,7 +6,7 @@ export default theme => {
       background: 'transparent',
       color: theme.palette.customColors.textWhite.main,
       [xs]: {
-        height: 'auto'
+        height: 'auto',
       },
       [sm]: {
         height: '64px',
@@ -47,7 +47,7 @@ export default theme => {
       borderBottom: 'none',
     },
     languageDropdownRoot: {
-      color: theme.palette.customColors.textWhite.main
+      color: theme.palette.customColors.textWhite.main,
     },
     navRoot: {
       [xs]: {
@@ -64,7 +64,7 @@ export default theme => {
         paddingRight: theme.spacing(3),
         paddingTop: 0,
         paddingBottom: 0,
-      }
+      },
     },
     navRootFullRow: {
       [xs]: {
@@ -81,7 +81,7 @@ export default theme => {
         paddingRight: theme.spacing(3),
         paddingTop: 0,
         paddingBottom: 0,
-      }
+      },
     },
     legalLinks: {
       color: theme.palette.customColors.textWhite.main,

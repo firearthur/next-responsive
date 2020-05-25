@@ -10,7 +10,9 @@ import MainPage from '../components/pages/main';
 import getStyles from '../pages-styles/index-styles';
 import Card from '../components/organisms/card';
 import BasicCard from '../components/molecules/basic-card';
-import Slider from '../components/organisms/slider';
+import Slider, { getPaddedArray } from '../components/organisms/slider';
+import Slide from '../components/molecules/slide';
+import SlideContent from '../components/molecules/slide-content';
 
 const useStyles = makeStyles(getStyles, { name: 'Index' });
 
@@ -29,13 +31,27 @@ const Index = () => {
   } = useStyles();
   const [hideNavBar, setHideNavBar] = useState(false);
   const [animateEquipment, setAnimateEquipment] = useState(false);
-
-  const slidesData = [
-    { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '111' },
-    { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '222' },
-    { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '333' },
-  ];
   const baseAssetPath = process.env.IMAGE_ASSETS_PATH;
+  const sliderButtonIcon = `${baseAssetPath}/slider-arrow.png`;
+
+  const slidesData = getPaddedArray([
+    {
+      headerIconUrl: `${baseAssetPath}/slide-1.png`,
+      headerIconAlt: 'thing',
+      text: '“You focus on putting in the work, and the technology handles the rest.”',
+    },
+    {
+      headerIconUrl: `${baseAssetPath}/slide-2.png`,
+      headerIconAlt: 'thing',
+      text: '“Literally transports you from home to wherever you choose to run.”',
+    },
+    {
+      headerIconUrl: `${baseAssetPath}/slide-3.png`,
+      headerIconAlt: 'thing',
+      text: '“Breathes new life into a tired, old running routine.”',
+    },
+  ]);
+  const slidesDataWithIds = slidesData.map((slide, i) => ({ ...slide, id: i }));
   const timeIconPath = `${baseAssetPath}/time-icon.png`;
   const distanceIconPath = `${baseAssetPath}/distance-icon.png`;
   const playListIconPath = `${baseAssetPath}/playlist-icon.png`;
@@ -221,11 +237,13 @@ const Index = () => {
     },
   ];
 
-  const handleScrollPassedHero = (e) => {
+  const handleScrollPassedHero = e => {
     const { isIntersecting, boundingClientRect, intersectionRect } = e[0];
-    if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) { // left on the way down
+    if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) {
+      // left on the way down
       setHideNavBar(true);
-    } else if (!isIntersecting && intersectionRect.y === 0) { // left on the way back to top
+    } else if (!isIntersecting && intersectionRect.y === 0) {
+      // left on the way back to top
       setHideNavBar(false);
     }
   };
@@ -253,6 +271,27 @@ const Index = () => {
 
       <IntersectionObserver onElementIntersect={handleScrollPassedHero} />
 
+      <Slider
+        buttonIconPath={sliderButtonIcon}
+        slideLeftRightMargin={5}
+        slideWidth={440}
+        slidesData={slidesData}
+      >
+        {slidesData.map(({
+          headerIconUrl, headerIconAlt, text, id,
+        }, i) => (
+          <Slide
+            width={440}
+            onTransitionEnd={() => console.log('hiii')}
+            onAnimationEnd={() => console.log('iiih')}
+            leftRightMargin={`${5}px`}
+            // width={i === slideToShrinkIndex ? '1px' : `${slideWidth}px`}
+            key={i}
+          >
+            <SlideContent text={text} headerIconAlt={headerIconAlt} headerIconUrl={headerIconUrl} />
+          </Slide>
+        ))}
+      </Slider>
       <div className={gridContainer}>
         <Grid className={gridWrapper} container spacing={1}>
           {gridCardsData.map((cardProps, i) => (
@@ -268,7 +307,7 @@ const Index = () => {
       <div className={equipmentContainer}>
         <Grid className={equipmentWrapper} container spacing={1}>
           {equipmentCardsData.map((cardProps, i) => (
-            <Zoom key={i} timeout={1000} in={animateEquipment} >
+            <Zoom key={i} timeout={1000} in={animateEquipment}>
               <Grid item sm={3} xs={12}>
                 <BasicCard {...cardProps} />
               </Grid>
@@ -278,10 +317,6 @@ const Index = () => {
       </div>
     </MainPage>
   );
-
-  // return (
-  //   <Slider slideLeftRightMargin={5} slideWidth={440} slidesData={slidesData} />
-  // );
 };
 
 Index.getInitialProps = async () => ({

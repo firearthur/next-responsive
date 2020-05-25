@@ -29,7 +29,7 @@ export default theme => {
       display: 'flex',
       justifyContent: 'center',
       marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(3)
+      marginBottom: theme.spacing(3),
     },
     gridWrapper: {
       width: '90%',
@@ -67,7 +67,7 @@ export default theme => {
     },
     joinButton: {
       '&:hover': {
-        background: theme.palette.customColors.buttonHoverPrimary.main
+        background: theme.palette.customColors.buttonHoverPrimary.main,
       },
       [xs]: {
         width: '192px',

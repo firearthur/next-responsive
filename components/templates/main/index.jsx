@@ -28,7 +28,7 @@ const MainTemplate = ({
       {head}
       {navBar}
       {/* toolBar is a clear for the app bar */}
-      <div className={classNames({hideNavBar}, toolBar)} />
+      <div className={classNames({ hideNavBar }, toolBar)} />
       <div className={contentContainer}>
         <main className={content}>
           {children}

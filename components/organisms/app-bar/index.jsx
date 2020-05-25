@@ -54,7 +54,7 @@ const AppBar = ({
             <Button className={signUpButtonMobile}>{commonT('appBar/button/text/signUp')}</Button>
           </ListItem>
           <Divider />
-          {navBarLinks.map(({text, href}) => (
+          {navBarLinks.map(({ text, href }) => (
             <ListItem button key={text}>
               <NavLink hideLeftPadding hideBorder key={text} text={text} href={href} />
             </ListItem>
@@ -69,7 +69,7 @@ const AppBar = ({
           ))}
         </List>
       </Drawer>
-      <NavBar className={classNames({hideNavBar}, navBar)} links={navBarLinks} />
+      <NavBar className={classNames({ hideNavBar }, navBar)} links={navBarLinks} />
       <Toolbar className={toolBar}>
         <IconButton
           color="inherit"

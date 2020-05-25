@@ -1,30 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# Running the app
+1. Clone it or extract it!
+2. cd into the root directory of it.
+3. run `yarn`.
+4. Copy `next.config.example.json` and rename your copy to `next.config.json`.
+5. Ask a college where to get the secrets and env vars to fill up `next.config.json`.
+6. Copy `.example.env` and rename your copy to `.env` then repeat step 5.
+7. Run `yarn dev`.
+8. Open Chrome on [Localhost](http://localhost:3333/).
+9. Enjoy!
 
-## Getting Started
 
-First, run the development server:
+## Notes:
+1. You might need to have `next.js` installed globally in order for the project ot work.
+2. Apollo and GraphQl are setup and ready to be used.
+3. Storybook is setup and ready to be used with `yarn storybook`.
+4. Used Atomic Design. Tried to stick to its rules as much as the time span allowed.
+5. Every text that's abbreviated with `[s]` when you switch the language is a place holder for actual Spanish translation. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Things I Wanted to Show Case in This Project:
+1. Ability to write a scalable code base from scratch.
+2. Match a design as close to pixel-perfect as possible.
+3. Good mobile responsiveness.
+4. Reusability and structure of code.
+5. Adapting to use new tools and libraries like `next.js`.
+6. Making use of existing libraries like `Material UI`.
+7. Have the basis for and implementing a design style-guide.
+8. Good coding ethics and practices.
+9. Nice-to-look-at animations.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Given more time I would've addressed these issues:
+1. Slider animation.
+2. Tightened spacing and typography to be pixel-perfect with design.
+3. Currently only the dev version works and only on Chrome as it does no transpiling. I would've loved to build and deploy it to address all cross-browser compatibility issues.
+4. Better error handling.
+5. Stories for all the components.

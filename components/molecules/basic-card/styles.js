@@ -16,6 +16,6 @@ export default theme => {
     titleText: {
       fontSize: '1.5rem',
       color: theme.palette.customColors.titleGrey.main,
-    }
+    },
   });
 };

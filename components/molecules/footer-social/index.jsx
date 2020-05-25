@@ -9,7 +9,9 @@ const useStyles = makeStyles(getStyles, { name: 'FooterSocial' });
  * Basic FooterSocial component
  */
 const FooterSocial = ({ links }) => {
-  const { root, mediaList, listItem, navLinkRoot } = useStyles();
+  const {
+    root, mediaList, listItem, navLinkRoot,
+  } = useStyles();
 
   return (
     <div className={root}>

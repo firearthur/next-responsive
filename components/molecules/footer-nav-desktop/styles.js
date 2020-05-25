@@ -27,6 +27,6 @@ export default theme => {
     },
     navLinkItem: {
       paddingBottom: theme.spacing(1),
-    }
+    },
   });
 };

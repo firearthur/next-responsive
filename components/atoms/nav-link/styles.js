@@ -4,7 +4,7 @@ export default theme => ({
       border: 'none',
     },
     '&.hideLeftPadding': {
-      paddingLeft: 0
+      paddingLeft: 0,
     },
     borderRight: `${theme.shapes.border.nav}${theme.palette.customColors.borderGrey.main}`,
     height: '100%',

@@ -35,7 +35,7 @@ const Dropdown = ({
   return (
     <FormControl className={classNames(className, root)}>
       <Select
-        className={classNames({[select]: hideBorder})}
+        className={classNames({ [select]: hideBorder })}
         classes={classesOverride}
         labelId="select-label"
         id="select"

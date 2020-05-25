@@ -17,7 +17,7 @@ export default (theme) => {
     },
     midNav: {
       [xs]: {
-        display: 'none'
+        display: 'none',
       },
       [sm]: {
         display: 'flex',
@@ -26,18 +26,18 @@ export default (theme) => {
     },
     navBar: {
       [xs]: {
-        display: 'none'
+        display: 'none',
       },
       [sm]: {
         display: 'flex',
       },
       '&.hideNavBar': {
         display: 'none',
-      }
+      },
     },
     signUpButton: {
       '&:hover': {
-        background: theme.palette.customColors.buttonHoverPrimary.main
+        background: theme.palette.customColors.buttonHoverPrimary.main,
       },
       background: theme.palette.primary.main,
       color: theme.palette.customColors.textWhite.main,
@@ -50,7 +50,7 @@ export default (theme) => {
     },
     signUpButtonMobile: {
       '&:hover': {
-        background: theme.palette.customColors.buttonHoverPrimary.main
+        background: theme.palette.customColors.buttonHoverPrimary.main,
       },
       background: theme.palette.primary.main,
       color: theme.palette.customColors.textWhite.main,

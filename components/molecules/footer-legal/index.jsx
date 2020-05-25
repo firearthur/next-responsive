@@ -9,7 +9,9 @@ const useStyles = makeStyles(getStyles, { name: 'FooterLegal' });
 /**
  * Basic FooterLegal component
  */
-const FooterLegal = ({ links, languageOptions, languageChangeHandler, currentLanguage }) => {
+const FooterLegal = ({
+  links, languageOptions, languageChangeHandler, currentLanguage,
+}) => {
   const {
     root,
     legalLinksContainer,

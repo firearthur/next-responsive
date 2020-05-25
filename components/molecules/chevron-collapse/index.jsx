@@ -28,7 +28,7 @@ const ChevronCollapse = ({
   return (
     <div className={classNames(className, root)}>
       <div className={titleContainer}>
-        <h3 className={collapseTitle} onClick={clickHandler} >{title}</h3>
+        <h3 className={collapseTitle} onClick={clickHandler}>{title}</h3>
         <KeyboardArrowDownIcon className={classNames({ [flipped]: isOpen })} onClick={clickHandler} />
       </div>
       <Collapse in={isOpen} timeout="auto">

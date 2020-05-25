@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import NavLink from '../../atoms/nav-link';
 import classNames from 'classnames';
+import NavLink from '../../atoms/nav-link';
 import { makeStyles } from '../../../lib';
 import getStyles from './styles';
 

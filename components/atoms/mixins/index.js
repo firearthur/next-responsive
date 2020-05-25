@@ -5,4 +5,3 @@ export default {
     minHeight: 56,
   },
 };
-

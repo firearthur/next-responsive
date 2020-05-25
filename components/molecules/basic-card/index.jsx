@@ -25,7 +25,7 @@ const BasicCard = ({
 BasicCard.propTypes = {
   title: PropTypes.any,
   imgDescription: PropTypes.any,
-  imgPath: PropTypes.any
+  imgPath: PropTypes.any,
 };
 
 

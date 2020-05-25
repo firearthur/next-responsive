@@ -10,7 +10,9 @@ const useStyles = makeStyles(getStyles, { name: 'FooterNav' });
  * Basic FooterNav component
  */
 const FooterNav = ({ navLinks, className }) => {
-  const { root, linkColumn, navColumnTitle, navText, navLinkItem } = useStyles();
+  const {
+    root, linkColumn, navColumnTitle, navText, navLinkItem,
+  } = useStyles();
 
   return (
     <div className={classNames(className, root)}>

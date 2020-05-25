@@ -57,7 +57,7 @@ const Card = ({
   const showStats = time || distance;
 
   return (
-    <MuiCard className={classNames({raiseUpOnHover: animateOnHover}, root)}>
+    <MuiCard className={classNames({ raiseUpOnHover: animateOnHover }, root)}>
       <CardActionArea>
         <CardMedia className={media} image={mainImgPath} title={mainImgTitle}>
           {
@@ -77,10 +77,10 @@ const Card = ({
             <p className={cardDescription}>
               <span className={eventName}>
                 {event}
-                {', '}
               </span>
               {location && (
                 <span className={eventLocation}>
+                  {', '}
                   {location}
                   {' '}
                 </span>
@@ -142,7 +142,7 @@ Card.propTypes = {
   time: PropTypes.any,
   timeIconDescription: PropTypes.any,
   timeIconPath: PropTypes.any,
-  width: PropTypes.any
+  width: PropTypes.any,
 };
 
 export default Card;

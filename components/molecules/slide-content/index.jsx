@@ -12,13 +12,13 @@ const SlideContent = ({
   headerIconAlt,
   text,
 }) => {
-  const { root } = useStyles();
+  const { root, slideText } = useStyles();
 
   return (
-    <>
+    <div className={root}>
       <h5><img src={headerIconUrl} alt={headerIconAlt} /></h5>
-      <p>{text}</p>
-    </>
+      <p className={slideText}>{text}</p>
+    </div>
   );
 };
 

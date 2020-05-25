@@ -7,5 +7,5 @@ export default {
   },
   boxShadow: {
     card: '0px 1px 2px rgba(46,49,52,0.4)',
-  }
+  },
 };
