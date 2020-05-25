@@ -21,16 +21,17 @@ const FooterLegal = ({ links, languageOptions, languageChangeHandler, currentLan
   } = useStyles();
   return (
     <Grid container justify="center" alignItems="center" className={root}>
-      <Dropdown
-        classesOverride={{
-          root: languageDropdownRoot,
-          icon: languageDropdownRoot,
-        }}
-        className={languageDropdown}
-        initialSelection={currentLanguage}
-        options={languageOptions}
-        onChange={languageChangeHandler}
-      />
+      <Grid className={languageDropdown} item xs={12}>
+        <Dropdown
+          classesOverride={{
+            root: languageDropdownRoot,
+            icon: languageDropdownRoot,
+          }}
+          initialSelection={currentLanguage}
+          options={languageOptions}
+          onChange={languageChangeHandler}
+        />
+      </Grid>
       <Grid item xs={12}>
         <div className={legalLinksContainer}>
           {links.map(({ text, href }, i) => (

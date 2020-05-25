@@ -32,8 +32,19 @@ export default theme => {
       alignItems: 'center',
     },
     languageDropdown: {
+      [xs]: {
+        position: 'static',
+        borderBottom: `${theme.shapes.border.nav}${theme.palette.customColors.borderGrey.main}`,
+        textAlign: 'center',
+      },
+      [sm]: {
+        position: 'absolute',
+        left: theme.spacing(2),
+        borderBottom: 'none',
+      },
       position: 'absolute',
       left: theme.spacing(2),
+      borderBottom: 'none',
     },
     languageDropdownRoot: {
       color: theme.palette.customColors.textWhite.main
