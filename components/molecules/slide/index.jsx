@@ -7,7 +7,9 @@ const useStyles = makeStyles(getStyles, { name: 'Slide' });
 /**
  * Basic slide component
  */
-const Slide = ({ width, leftRightMargin, children, index, indexToShrink, indexToGrow }) => {
+const Slide = ({
+  width, leftRightMargin, children, index, indexToShrink, indexToGrow,
+}) => {
   const { root } = useStyles();
 
   return (

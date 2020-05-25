@@ -46,7 +46,9 @@ const Slider = ({
   onTransitioned,
   children,
 }) => {
-  const { root, belt, button, leftArrow, rightArrow } = useStyles();
+  const {
+    root, belt, button, leftArrow, rightArrow,
+  } = useStyles();
   const [paddedSlidesData, setPaddedSlides] = useState(children);
   const [slideToShrinkIndex, setSlideToShrinkIndex] = useState(-1);
   const [slideToGrowIndex, setSlideToGrow] = useState(-1);
@@ -89,13 +91,11 @@ const Slider = ({
         }}
         className={belt}
       >
-        {Children.map(paddedSlidesData, (child, i) =>
-          cloneElement(child, {
-            index: i,
-            indexToShrink: slideToShrinkIndex,
-            indexToGrow: slideToGrowIndex,
-          }),
-        )}
+        {Children.map(paddedSlidesData, (child, i) => cloneElement(child, {
+          index: i,
+          indexToShrink: slideToShrinkIndex,
+          indexToGrow: slideToGrowIndex,
+        }))}
         {/* {paddedSlidesData} */}
         {/* {paddedSlidesData.map(({
           headerIconUrl, headerIconAlt, text, id,
