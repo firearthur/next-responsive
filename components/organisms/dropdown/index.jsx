@@ -50,7 +50,7 @@ const Dropdown = ({
 };
 
 Dropdown.propTypes = {
-  initialSelection: PropTypes.string.isRequired,
+  initialSelection: PropTypes.string,
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,

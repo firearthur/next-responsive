@@ -50,13 +50,14 @@ const Slider = ({
   const [factor, setFactor] = useState(0);
 
   const handleLeftClicked = e => {
-    setFactor(factor + 1);
+    factor >= (slidesData.length - 1) / 2 ? setFactor(0) : setFactor(factor + 1);
 
     typeof onLeftClicked === 'function' && onLeftClicked(e);
   };
 
   const handleRightClicked = e => {
-    setFactor(factor - 1);
+    factor <= -1 * ((slidesData.length - 1) / 2) ? setFactor(0) : setFactor(factor - 1);
+
     typeof onRightClicked === 'function' && onRightClicked(e);
   };
 
@@ -83,7 +84,7 @@ const Slider = ({
           headerIconUrl, headerIconAlt, text,
         }, i) => (
           <Slide
-            style={{ left: `${factor * slideWidthWithMargins > beltWidth ? 0 : factor * slideWidthWithMargins}px` }}
+            style={{ left: `${factor * slideWidthWithMargins > beltWidth / 2 ? 0 : factor * slideWidthWithMargins}px` }}
             leftRightMargin={`${slideLeftRightMargin}px`}
             key={i}
           >
