@@ -31,8 +31,8 @@
 
 
 ## Given more time I would've addressed these issues:
-1. Slider animation.
-2. Tightened spacing and typography to be pixel-perfect with design.
+1. Infinite Slider feature.
+2. Tightened spacing and typography to be pixel-perfect with design and code cleanup.
 3. Currently only the dev version works and only on Chrome as it does no transpiling. I would've loved to build and deploy it to address all cross-browser compatibility issues.
 4. Better error handling.
 5. Stories for all the components.
