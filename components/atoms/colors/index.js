@@ -53,6 +53,9 @@ export default {
     titleGrey: {
       main: '#2e3134',
     },
+    buttonHoverPrimary:{
+      main: 'rgb(17, 82, 147)',
+    },
     foregroundBlueGrey: {
       main: blueGrey[200],
     },

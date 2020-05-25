@@ -2,6 +2,14 @@ export default (theme) => ({
   root: {
     width: '288px',
     height: '300px',
+    transition: 'top 0.5s ease',
+    '&.raiseUpOnHover': {
+      position: 'relative',
+      top: 0,
+    },
+    '&:hover': {
+      top: '-5px',
+    },
   },
   media: {
     height: '164px',

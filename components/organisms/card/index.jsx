@@ -1,9 +1,9 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
-import PropTypes from 'prop-types';
 import {
   makeStyles, MuiCard, Grid, Button,
 } from '../../../lib';
@@ -34,6 +34,7 @@ const Card = ({
   overlayTitle,
   overlayCount,
   buttons = [],
+  animateOnHover,
 }) => {
   const {
     root,
@@ -56,7 +57,7 @@ const Card = ({
   const showStats = time || distance;
 
   return (
-    <MuiCard className={root}>
+    <MuiCard className={classNames({raiseUpOnHover: animateOnHover}, root)}>
       <CardActionArea>
         <CardMedia className={media} image={mainImgPath} title={mainImgTitle}>
           {

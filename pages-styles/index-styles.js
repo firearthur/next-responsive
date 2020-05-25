@@ -64,7 +64,7 @@ export default theme => {
     },
     joinButton: {
       '&:hover': {
-        color: theme.palette.customColors.navText.main,
+        background: theme.palette.customColors.buttonHoverPrimary.main
       },
       [xs]: {
         width: '192px',

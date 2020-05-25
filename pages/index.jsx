@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import Fade from '@material-ui/core/Fade';
+import Zoom from '@material-ui/core/Zoom';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { useTranslation, i18n } from '../i18n';
+import IntersectionObserver from '../components/molecules/intersection-observer';
 // eslint-disable-next-line import/named
 import { withApollo } from '../lib/apollo';
 import { makeStyles, Button, Grid } from '../lib';
@@ -24,6 +28,15 @@ const Index = () => {
     equipmentWrapper,
     equipmentsTitle,
   } = useStyles();
+  const [hideNavBar, setHideNavBar] = useState(false);
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 1,
+  });
+
+  if (hideNavBar && !trigger) {
+    setHideNavBar(false);
+  }
 
   const slidesData = [
     { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '111' },
@@ -216,22 +229,34 @@ const Index = () => {
     },
   ];
 
+  const handleScrollPassedHero = (e) => {
+    const { isIntersecting, boundingClientRect } = e[0];
+    console.log('e[0]', e[0]);
+    if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) {
+      setHideNavBar(true);
+    }
+  };
+
   return (
-    <MainPage showFooter title={commonT('pageTitles/index')}>
+    <MainPage hideNavBar={hideNavBar} showFooter title={commonT('pageTitles/index')}>
       <div className={hero}>
         <div className={heroContent}>
-          <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
+          <Fade timeout={1000} in style={{ transitionDelay: '2000ms' }}>
+            <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
+          </Fade>
           <Button className={joinButton}>
             {commonT('pages/index/hero/joinButton/joinIfitCoach')}
           </Button>
         </div>
       </div>
 
+      <IntersectionObserver onElementIntersect={handleScrollPassedHero} />
+
       <div className={gridContainer}>
         <Grid className={gridWrapper} container spacing={1}>
           {gridCardsData.map((cardProps, i) => (
             <Grid key={i} item container justify="center" sm={3} xs={12}>
-              <Card {...cardProps} />
+              <Card animateOnHover {...cardProps} />
             </Grid>
           ))}
         </Grid>
@@ -241,9 +266,11 @@ const Index = () => {
       <div className={equipmentContainer}>
         <Grid className={equipmentWrapper} container spacing={1}>
           {equipmentCardsData.map((cardProps, i) => (
-            <Grid key={i} item sm={3} xs={12}>
-              <BasicCard {...cardProps} />
-            </Grid>
+            <Zoom key={i} timeout={1000} in style={{ transitionDelay: '2000ms' }}>
+              <Grid item sm={3} xs={12}>
+                <BasicCard {...cardProps} />
+              </Grid>
+            </Zoom>
           ))}
         </Grid>
       </div>

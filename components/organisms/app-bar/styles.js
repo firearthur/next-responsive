@@ -37,7 +37,7 @@ export default (theme) => {
     },
     signUpButton: {
       '&:hover': {
-        color: theme.palette.customColors.navText.main,
+        background: theme.palette.customColors.buttonHoverPrimary.main
       },
       background: theme.palette.primary.main,
       color: theme.palette.customColors.textWhite.main,
@@ -50,7 +50,7 @@ export default (theme) => {
     },
     signUpButtonMobile: {
       '&:hover': {
-        color: theme.palette.customColors.navText.main,
+        background: theme.palette.customColors.buttonHoverPrimary.main
       },
       background: theme.palette.primary.main,
       color: theme.palette.customColors.textWhite.main,

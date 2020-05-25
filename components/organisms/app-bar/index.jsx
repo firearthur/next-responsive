@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import classNames from 'classnames';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Drawer from '@material-ui/core/Drawer';
@@ -69,7 +69,7 @@ const AppBar = ({
           ))}
         </List>
       </Drawer>
-      <NavBar className={navBar} links={navBarLinks} />
+      <NavBar className={classNames({hideNavBar}, navBar)} links={navBarLinks} />
       <Toolbar className={toolBar}>
         <IconButton
           color="inherit"

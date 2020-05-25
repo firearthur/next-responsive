@@ -25,6 +25,7 @@ export default theme => {
       [sm]: {
         minHeight: `${theme.dimensions.height.navBar + theme.dimensions.height.toolBar}px`,
       },
+      '&.hideNavBar': theme.customMixins.toolBar,
       minHeight: `${theme.dimensions.height.navBar + theme.dimensions.height.toolBar}px`,
     },
     content: {

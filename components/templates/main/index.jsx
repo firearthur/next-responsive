@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { makeStyles } from '../../../lib';
 import getStyles from './styles';
 
@@ -15,6 +16,7 @@ const MainTemplate = ({
   navBar,
   footer,
   children,
+  hideNavBar,
 }) => {
   const {
     contentContainer, content, toolBar, root,
@@ -26,7 +28,7 @@ const MainTemplate = ({
       {head}
       {navBar}
       {/* toolBar is a clear for the app bar */}
-      <div className={toolBar} />
+      <div className={classNames({hideNavBar}, toolBar)} />
       <div className={contentContainer}>
         <main className={content}>
           {children}

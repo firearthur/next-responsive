@@ -22,6 +22,7 @@ const MainPage = ({
   customFooter,
   showFooter = false,
   title = 'iFit',
+  hideNavBar,
   appBarProps = {},
   footerProps = {},
 }) => {
@@ -130,6 +131,7 @@ const MainPage = ({
 
   return (
     <MainTemplate
+      hideNavBar
       head={(
         <Head>
           <title>{title}</title>
@@ -139,6 +141,7 @@ const MainPage = ({
       )}
       navBar={(
         <AppBar
+          hideNavBar={hideNavBar}
           toolBarLinks={TOOL_BAR_LINKS}
           logoPath={APP_LOGO_PATH}
           navBarLinks={NAV_BAR_LINKS}
