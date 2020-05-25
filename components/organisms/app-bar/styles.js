@@ -48,6 +48,16 @@ export default (theme) => {
         visibility: 'visible',
       },
     },
+    signUpButtonMobile: {
+      '&:hover': {
+        color: theme.palette.customColors.navText.main,
+      },
+      background: theme.palette.primary.main,
+      color: theme.palette.customColors.textWhite.main,
+    },
+    mobileSignUpContainer: {
+      justifyContent: 'center',
+    },
     logo: {
       [xs]: {
         height: '12px',
