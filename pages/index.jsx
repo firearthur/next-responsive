@@ -11,8 +11,6 @@ import getStyles from '../pages-styles/index-styles';
 import Card from '../components/organisms/card';
 import BasicCard from '../components/molecules/basic-card';
 import Slider, { getPaddedArray } from '../components/organisms/slider';
-import Slide from '../components/molecules/slide';
-import SlideContent from '../components/molecules/slide-content';
 
 const useStyles = makeStyles(getStyles, { name: 'Index' });
 
@@ -276,22 +274,8 @@ const Index = () => {
         slideLeftRightMargin={5}
         slideWidth={440}
         slidesData={slidesData}
-      >
-        {slidesData.map(({
-          headerIconUrl, headerIconAlt, text, id,
-        }, i) => (
-          <Slide
-            width={440}
-            onTransitionEnd={() => console.log('hiii')}
-            onAnimationEnd={() => console.log('iiih')}
-            leftRightMargin={`${5}px`}
-            // width={i === slideToShrinkIndex ? '1px' : `${slideWidth}px`}
-            key={i}
-          >
-            <SlideContent text={text} headerIconAlt={headerIconAlt} headerIconUrl={headerIconUrl} />
-          </Slide>
-        ))}
-      </Slider>
+      />
+
       <div className={gridContainer}>
         <Grid className={gridWrapper} container spacing={1}>
           {gridCardsData.map((cardProps, i) => (

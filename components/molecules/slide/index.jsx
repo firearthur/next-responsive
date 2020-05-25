@@ -8,16 +8,17 @@ const useStyles = makeStyles(getStyles, { name: 'Slide' });
  * Basic slide component
  */
 const Slide = ({
-  width, leftRightMargin, children, index, indexToShrink, indexToGrow,
+  width, leftRightMargin, children, index, indexToShrink, indexToGrow, style
 }) => {
   const { root } = useStyles();
 
   return (
     <div
       style={{
-        width: index === indexToShrink ? '0px' : index === indexToGrow ? (width * 2) + 10 : width,
+        width,
         marginLeft: leftRightMargin,
         marginRight: leftRightMargin,
+        ...style,
       }}
       className={root}
     >

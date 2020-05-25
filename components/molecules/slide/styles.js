@@ -3,7 +3,6 @@ export default theme => {
   const sm = theme.breakpoints.up('sm');
   return ({
     root: {
-      transition: 'width .5s linear',
       width: '440px',
       height: '184px',
       background: theme.palette.customColors.backgroundWhite.main,
@@ -14,6 +13,9 @@ export default theme => {
       // [sm]: {
       //   width: '440px',
       // },
+      transition: 'left 1s ease',
+      position: 'relative',
+      left: 0,
     },
   });
 };

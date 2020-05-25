@@ -13,6 +13,7 @@ export default (theme) => ({
   },
   button: {
     position: 'absolute',
+    zIndex: 1,
   },
   leftArrow: {
     left: '10px',

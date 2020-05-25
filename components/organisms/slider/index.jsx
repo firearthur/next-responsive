@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, Children, cloneElement } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import Slide from '../../molecules/slide';
 import SlideContent from '../../molecules/slide-content';
@@ -43,36 +43,26 @@ const Slider = ({
   onLeftClicked,
   onRightClicked,
   buttonIconPath,
-  onTransitioned,
-  children,
 }) => {
   const {
     root, belt, button, leftArrow, rightArrow,
   } = useStyles();
-  const [paddedSlidesData, setPaddedSlides] = useState(children);
-  const [slideToShrinkIndex, setSlideToShrinkIndex] = useState(-1);
-  const [slideToGrowIndex, setSlideToGrow] = useState(-1);
+  const [factor, setFactor] = useState(0);
 
   const handleLeftClicked = e => {
-    // setSlideToGrow(0);
-    // const firstChild = paddedSlidesData[0];
+    setFactor(factor + 1);
 
-    // setTimeout(() => {
-    setPaddedSlides([
-      paddedSlidesData[paddedSlidesData.length - 1],
-      ...paddedSlidesData.slice(0, paddedSlidesData.length - 1),
-    ]);
-    // setSlideToGrow(-1);
-    // },1000);
     typeof onLeftClicked === 'function' && onLeftClicked(e);
   };
 
   const handleRightClicked = e => {
-    setPaddedSlides([...paddedSlidesData.slice(1), paddedSlidesData[0]]);
+    setFactor(factor - 1);
     typeof onRightClicked === 'function' && onRightClicked(e);
   };
 
-  const beltWidth = (paddedSlidesData.length + 1) * (slideWidth + slideLeftRightMargin * 2);
+  const slideWidthWithMargins = (slideWidth + slideLeftRightMargin * 2);
+
+  const beltWidth = (slidesData.length + 1) * slideWidthWithMargins;
   return (
     <div className={root}>
       <IconButton
@@ -85,31 +75,21 @@ const Slider = ({
       <div
         style={{
           width: `${beltWidth}px`,
-          // marginLeft: `calc(50% - ${
-          //   (paddedSlidesData.length * (slideWidth + slideLeftRightMargin * 2)) / 2
-          // }px)`,
         }}
         className={belt}
       >
-        {Children.map(paddedSlidesData, (child, i) => cloneElement(child, {
-          index: i,
-          indexToShrink: slideToShrinkIndex,
-          indexToGrow: slideToGrowIndex,
-        }))}
-        {/* {paddedSlidesData} */}
-        {/* {paddedSlidesData.map(({
-          headerIconUrl, headerIconAlt, text, id,
+
+        {slidesData.map(({
+          headerIconUrl, headerIconAlt, text,
         }, i) => (
           <Slide
-            onTransitionEnd={() => console.log('hiii')}
-            onAnimationEnd={() => console.log('iiih')}
+            style={{ left: `${factor * slideWidthWithMargins > beltWidth ? 0 : factor * slideWidthWithMargins}px` }}
             leftRightMargin={`${slideLeftRightMargin}px`}
-            width={i === slideToShrinkIndex ? '1px' : `${slideWidth}px`}
-            key={headerIconUrl}
+            key={i}
           >
             <SlideContent text={text} headerIconAlt={headerIconAlt} headerIconUrl={headerIconUrl} />
           </Slide>
-        ))} */}
+        ))}
       </div>
       <IconButton
         className={classNames(rightArrow, button)}
@@ -127,7 +107,6 @@ Slider.propTypes = {
   slideLeftRightMargin: PropTypes.number.isRequired,
   onLeftClicked: PropTypes.func,
   onRightClicked: PropTypes.func,
-  onTransitioned: PropTypes.func,
   slidesData: PropTypes.arrayOf(
     PropTypes.shape({
       headerIconUrl: PropTypes.string,
