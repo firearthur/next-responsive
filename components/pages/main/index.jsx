@@ -131,7 +131,7 @@ const MainPage = ({
 
   return (
     <MainTemplate
-      hideNavBar
+      hideNavBar={hideNavBar}
       head={(
         <Head>
           <title>{title}</title>

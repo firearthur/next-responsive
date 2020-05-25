@@ -28,12 +28,15 @@ export default theme => {
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(3)
     },
     gridWrapper: {
       width: '90%',
     },
     equipmentContainer: {
       marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(3),
       padding: `0 ${theme.spacing(1)}`,
     },
     equipmentsTitle: {

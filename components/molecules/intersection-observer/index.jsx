@@ -21,7 +21,7 @@ const IntersectionObserverEl = ({
   useEffect(() => {
     const { current } = ref;
 
-    const observer = new IntersectionObserver(onElementIntersect);
+    const observer = new IntersectionObserver((e) => { onElementIntersect(e, observer); });
     observer.observe(current);
     return () => {
       observer.disconnect();

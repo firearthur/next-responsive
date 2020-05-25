@@ -28,6 +28,7 @@ const Index = () => {
     equipmentsTitle,
   } = useStyles();
   const [hideNavBar, setHideNavBar] = useState(false);
+  const [animateEquipment, setAnimateEquipment] = useState(false);
 
   const slidesData = [
     { headerIconUrl: 'static/images/thing.png', headerIconAlt: 'thing', text: '111' },
@@ -222,10 +223,18 @@ const Index = () => {
 
   const handleScrollPassedHero = (e) => {
     const { isIntersecting, boundingClientRect, intersectionRect } = e[0];
-    if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) {
+    if (!isIntersecting && boundingClientRect.y < 100 && !hideNavBar) { // left on the way down
       setHideNavBar(true);
-    } else if(!isIntersecting && intersectionRect.y === 0) {
+    } else if (!isIntersecting && intersectionRect.y === 0) { // left on the way back to top
       setHideNavBar(false);
+    }
+  };
+
+  const handleScrollToEquipment = (e, observerObj) => {
+    const { isIntersecting } = e[0];
+    if (isIntersecting) {
+      setAnimateEquipment(true);
+      observerObj.disconnect();
     }
   };
 
@@ -233,7 +242,7 @@ const Index = () => {
     <MainPage hideNavBar={hideNavBar} showFooter title={commonT('pageTitles/index')}>
       <div className={hero}>
         <div className={heroContent}>
-          <Fade timeout={1000} in style={{ transitionDelay: '2000ms' }}>
+          <Fade timeout={1000} in style={{ transitionDelay: '1000ms' }}>
             <p className={heroParagraph}>{commonT('pages/index/hero/paragraph/best')}</p>
           </Fade>
           <Button className={joinButton}>
@@ -255,10 +264,11 @@ const Index = () => {
       </div>
 
       <h2 className={equipmentsTitle}>{commonT('pages/index/equipmentsTitle/enabled')}</h2>
+      <IntersectionObserver onElementIntersect={handleScrollToEquipment} />
       <div className={equipmentContainer}>
         <Grid className={equipmentWrapper} container spacing={1}>
           {equipmentCardsData.map((cardProps, i) => (
-            <Zoom key={i} timeout={1000} in style={{ transitionDelay: '2000ms' }}>
+            <Zoom key={i} timeout={1000} in={animateEquipment} >
               <Grid item sm={3} xs={12}>
                 <BasicCard {...cardProps} />
               </Grid>
