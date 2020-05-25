@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
-import { makeStyles } from '../../../lib';
+import classNames from 'classnames';
+import { makeStyles, Grid } from '../../../lib';
+import ChevronCollapse from '../chevron-collapse';
+import NavLink from '../../atoms/nav-link';
 import getStyles from './styles';
 
 const useStyles = makeStyles(getStyles, { name: 'FooterNav' });
@@ -7,28 +10,45 @@ const useStyles = makeStyles(getStyles, { name: 'FooterNav' });
 /**
  * Basic FooterNav component
  */
-const FooterNav = ({
-  width,
-  leftRightMargin,
-  children,
-}) => {
-  const { root } = useStyles();
+const FooterNav = ({ navLinks, className }) => {
+  const {
+    root, linkColumn, navLinkRoot, navText, navLinkItem, collapseContainer,
+  } = useStyles();
 
   return (
-    <div style={{ width, marginLeft: leftRightMargin, marginRight: leftRightMargin }} className={root}>
-      {children}
+    <div className={classNames(className, root)}>
+      {navLinks.map(({ title, links }, i) => (
+        <ChevronCollapse key={title} className={(i !== navLinks.length - 1) ? collapseContainer : ''} title={title}>
+          <ul className={linkColumn}>
+            {links.map(({ text, href }) => (
+              <li className={navLinkItem} key={text}>
+                <NavLink
+                  rootCustomStyles={navLinkRoot}
+                  navTextCustomStyles={navText}
+                  hideBorder
+                  hideLeftPadding
+                  key={text}
+                  text={text}
+                  href={href}
+                />
+              </li>
+            ))}
+          </ul>
+        </ChevronCollapse>
+      ))}
     </div>
   );
 };
 
 FooterNav.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  width: PropTypes.string.isRequired,
-  leftRightMargin: PropTypes.string.isRequired,
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({ text: PropTypes.string.isRequired, href: PropTypes.string.isRequired }),
+      ).isRequired,
+    }),
+  ),
 };
-
 
 export default FooterNav;

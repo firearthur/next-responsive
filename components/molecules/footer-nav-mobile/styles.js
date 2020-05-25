@@ -3,14 +3,30 @@ export default theme => {
   const sm = theme.breakpoints.up('sm');
   return ({
     root: {
-      transition: 'width .5s linear',
-      background: 'red',
-      // [xs]: {
-      //   width: '220px',
-      // },
-      // [sm]: {
-      //   width: '440px',
-      // },
+      background: 'transparent',
+      color: theme.palette.customColors.textWhite.main,
+    },
+    navColumnTitle: {
+      fontSize: '1rem',
+      margin: 0,
+    },
+    navText: {
+      color: theme.palette.customColors.textWhite.main,
+      textTransform: 'none',
+    },
+    linkColumn: {
+      listStyle: 'none',
+      padding: 0,
+    },
+    navLinkItem: {
+      paddingBottom: theme.spacing(1),
+    },
+    navLinkRoot: {
+      justifyContent: 'center',
+      padding: 0,
+    },
+    collapseContainer: {
+      borderBottom: `${theme.shapes.border.nav}${theme.palette.customColors.borderGrey.main}`,
     },
   });
 };

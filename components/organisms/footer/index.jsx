@@ -22,7 +22,7 @@ const Footer = ({
   return (
     <footer className={root}>
       <FooterNavDesktop className={desktopNav} navLinks={navLinks} />
-      {/* <FooterNavMobile className={mobileNav} navLinks={navLinks} /> */}
+      <FooterNavMobile className={mobileNav} navLinks={navLinks} />
       <FooterSocial links={socialLinks} />
       <FooterLegal {...languageProps} links={legalLinks} />
     </footer>

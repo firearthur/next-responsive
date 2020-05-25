@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { makeStyles, Grid } from '../../../lib';
 import NavLink from '../../atoms/nav-link';
 import getStyles from './styles';
@@ -8,11 +9,11 @@ const useStyles = makeStyles(getStyles, { name: 'FooterNav' });
 /**
  * Basic FooterNav component
  */
-const FooterNav = ({ navLinks }) => {
+const FooterNav = ({ navLinks, className }) => {
   const { root, linkColumn, navColumnTitle, navText, navLinkItem } = useStyles();
 
   return (
-    <div className={root}>
+    <div className={classNames(className, root)}>
       <Grid container justify="center" spacing={1}>
         {navLinks.map(({ title, links }) => (
           <Grid item key={title} xs={4}>
