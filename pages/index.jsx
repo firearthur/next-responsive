@@ -10,7 +10,7 @@ import MainPage from '../components/pages/main';
 import getStyles from '../pages-styles/index-styles';
 import Card from '../components/organisms/card';
 import BasicCard from '../components/molecules/basic-card';
-import Slider, { getPaddedArray } from '../components/organisms/slider';
+import Slider from '../components/organisms/slider';
 
 const useStyles = makeStyles(getStyles, { name: 'Index' });
 
@@ -32,7 +32,7 @@ const Index = () => {
   const baseAssetPath = process.env.IMAGE_ASSETS_PATH;
   const sliderButtonIcon = `${baseAssetPath}/slider-arrow.png`;
 
-  const slidesData = getPaddedArray([
+  const slidesData = [
     {
       headerIconUrl: `${baseAssetPath}/slide-1.png`,
       headerIconAlt: 'thing',
@@ -48,8 +48,7 @@ const Index = () => {
       headerIconAlt: 'thing',
       text: '“Breathes new life into a tired, old running routine.”',
     },
-  ]);
-  const slidesDataWithIds = slidesData.map((slide, i) => ({ ...slide, id: i }));
+  ];
   const timeIconPath = `${baseAssetPath}/time-icon.png`;
   const distanceIconPath = `${baseAssetPath}/distance-icon.png`;
   const playListIconPath = `${baseAssetPath}/playlist-icon.png`;

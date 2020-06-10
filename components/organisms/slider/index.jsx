@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Slide from '../../molecules/slide';
 import SlideContent from '../../molecules/slide-content';
@@ -9,7 +9,7 @@ import getStyles from './styles';
 const useStyles = makeStyles(getStyles, { name: 'Slider' });
 
 /**
- * Returns an array guaranteed to have a least number of elements
+ * Returns an array guaranteed to have a least number of elements (duplicates elements to pad)
  * @param {array} array to be padded
  * @param {number} minToPad least number of elements to be guaranteed to have
  */
@@ -43,27 +43,61 @@ const Slider = ({
   onLeftClicked,
   onRightClicked,
   buttonIconPath,
+  children,
 }) => {
-  const {
-    root, belt, button, leftArrow, rightArrow,
-  } = useStyles();
+
+  const { root, belt, button, leftArrow, rightArrow } = useStyles();
   const [factor, setFactor] = useState(0);
+  const [viewWidth, setViewWidth] = useState(0);
+  const [slides] = useState(() => getPaddedArray(slidesData));
+
+  /**
+   * Sets the view port width value
+   */
+  const setClientWidth = () => {
+    const clientWidth = document.documentElement.clientWidth || window.innerWidth;
+    setViewWidth(clientWidth);
+  };
+
+  // this runs only once kinda like componentDidMount @see https://reactjs.org/docs/hooks-effect.html
+  useEffect(() => {
+    setClientWidth();
+    window.addEventListener('resize', setClientWidth); // for subsequent resizing get the view port
+
+    return () => {
+      window.removeEventListener('resize', setClientWidth); // clean up
+    };
+  }, []);
+
+  const slideWidthWithMargins = slideWidth + (slideLeftRightMargin * 2); // full slide width
+  // how many slides can the view port show at a time
+  // Note: viewWidth changes on window resize to update this number
+  const slidesCountToFitInViewPort = Math.round(viewWidth / slideWidthWithMargins);
+  // if we subtract the number of slides showing from the total slides count we get how many slides
+  // are on each side (hidden in belt) taken that the number of slides is odd
+  const slidesOnEachHiddenSide = slides.length - slidesCountToFitInViewPort;
+  // this is the number we compare to so we can decide wether to put the slides in their initial
+  // position or not
+  const goBackFactor = slidesOnEachHiddenSide / 2;
+  // the belt is the wide element that extends beyond the view port to hold all the slides
+  const beltWidth = (slides.length + 1) * slideWidthWithMargins; // offset is for zero indexed array
+  // the offset to actually make the slides move
+  const leftOffset = factor * slideWidthWithMargins;
 
   const handleLeftClicked = e => {
-    factor >= (slidesData.length - 1) / 2 ? setFactor(0) : setFactor(factor + 1);
+    const goToBeginning = factor >= goBackFactor;
+    goToBeginning ? setFactor(0) : setFactor(factor + 1);
 
     typeof onLeftClicked === 'function' && onLeftClicked(e);
   };
 
   const handleRightClicked = e => {
-    factor <= -1 * ((slidesData.length - 1) / 2) ? setFactor(0) : setFactor(factor - 1);
+    const goToBeginning = factor <= (-1 * goBackFactor);
+    goToBeginning ? setFactor(0) : setFactor(factor - 1);
 
     typeof onRightClicked === 'function' && onRightClicked(e);
   };
 
-  const slideWidthWithMargins = (slideWidth + slideLeftRightMargin * 2);
-
-  const beltWidth = (slidesData.length + 1) * slideWidthWithMargins;
   return (
     <div className={root}>
       <IconButton
@@ -79,12 +113,9 @@ const Slider = ({
         }}
         className={belt}
       >
-
-        {slidesData.map(({
-          headerIconUrl, headerIconAlt, text,
-        }, i) => (
+        {slides.map(({ headerIconUrl, headerIconAlt, text }, i) => (
           <Slide
-            style={{ left: `${factor * slideWidthWithMargins > beltWidth / 2 ? 0 : factor * slideWidthWithMargins}px` }}
+            style={{left: `${leftOffset}px`}}
             leftRightMargin={`${slideLeftRightMargin}px`}
             key={i}
           >
@@ -104,6 +135,8 @@ const Slider = ({
 };
 
 Slider.propTypes = {
+  buttonIconPath: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   slideWidth: PropTypes.number.isRequired,
   slideLeftRightMargin: PropTypes.number.isRequired,
   onLeftClicked: PropTypes.func,
