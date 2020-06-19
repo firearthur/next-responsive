@@ -25,6 +25,7 @@ export default (theme) => {
       display: 'flex',
     },
     navBar: {
+      transition: 'margin-top 1s ease',
       [xs]: {
         display: 'none',
       },
@@ -32,7 +33,7 @@ export default (theme) => {
         display: 'flex',
       },
       '&.hideNavBar': {
-        display: 'none',
+        marginTop: `${-1 * theme.dimensions.height.navBar}px`,
       },
     },
     signUpButton: {
