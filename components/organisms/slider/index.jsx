@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, useRef, Children, cloneElement,
+} from 'react';
 import classNames from 'classnames';
 import Slide from '../../molecules/slide';
 import SlideContent from '../../molecules/slide-content';
@@ -43,13 +45,17 @@ const Slider = ({
   onLeftClicked,
   onRightClicked,
   buttonIconPath,
+  onTransitionEnd,
   children,
 }) => {
-
-  const { root, belt, button, leftArrow, rightArrow } = useStyles();
+  const {
+    root, belt, button, leftArrow, rightArrow,
+  } = useStyles();
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [factor, setFactor] = useState(0);
   const [viewWidth, setViewWidth] = useState(0);
-  const [slides] = useState(() => getPaddedArray(slidesData));
+  const [slides] = useState(() => !children && getPaddedArray(slidesData));
+  const sliderNodeRef = useRef(null);
 
   /**
    * Sets the view port width value
@@ -58,33 +64,53 @@ const Slider = ({
     const clientWidth = document.documentElement.clientWidth || window.innerWidth;
     setViewWidth(clientWidth);
   };
+  /**
+   * Fire transition hook on transition finish
+   * @param {TransitionEvent} e @see https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent
+   */
+  const handleTransitionEnd = e => {
+    setIsTransitioning(false);
+    const shouldCallTransitionHook = typeof onTransitionEnd === 'function' && e && e.propertyName === 'left';
 
-  // this runs only once kinda like componentDidMount @see https://reactjs.org/docs/hooks-effect.html
+    shouldCallTransitionHook && onTransitionEnd(e);
+  };
+
+  // runs only once kinda like componentDidMount @see https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
+    const sliderNode = sliderNodeRef.current;
     setClientWidth();
     window.addEventListener('resize', setClientWidth); // for subsequent resizing get the view port
-
+    sliderNode.addEventListener('transitionend', handleTransitionEnd);
     return () => {
-      window.removeEventListener('resize', setClientWidth); // clean up
+      // clean up
+      window.removeEventListener('resize', setClientWidth);
+      sliderNode.removeEventListener('transitionend', handleTransitionEnd);
     };
   }, []);
 
-  const slideWidthWithMargins = slideWidth + (slideLeftRightMargin * 2); // full slide width
+  const slideWidthWithMargins = slideWidth + slideLeftRightMargin * 2; // full slide width
   // how many slides can the view port show at a time
   // Note: viewWidth changes on window resize to update this number
   const slidesCountToFitInViewPort = Math.round(viewWidth / slideWidthWithMargins);
+  // children take priority over fixed slides data
+  const slidesCount = (children && children.length) || slides.length;
   // if we subtract the number of slides showing from the total slides count we get how many slides
   // are on each side (hidden in belt) taken that the number of slides is odd
-  const slidesOnEachHiddenSide = slides.length - slidesCountToFitInViewPort;
+  const slidesOnEachHiddenSide = slidesCount - slidesCountToFitInViewPort;
   // this is the number we compare to so we can decide wether to put the slides in their initial
   // position or not
   const goBackFactor = slidesOnEachHiddenSide / 2;
   // the belt is the wide element that extends beyond the view port to hold all the slides
-  const beltWidth = (slides.length + 1) * slideWidthWithMargins; // offset is for zero indexed array
+  const beltWidth = (slidesCount + 1) * slideWidthWithMargins; // offset is for zero indexed array
   // the offset to actually make the slides move
   const leftOffset = factor * slideWidthWithMargins;
 
   const handleLeftClicked = e => {
+    if (isTransitioning) {
+      return;
+    }
+
+    setIsTransitioning(true);
     const goToBeginning = factor >= goBackFactor;
     goToBeginning ? setFactor(0) : setFactor(factor + 1);
 
@@ -92,14 +118,19 @@ const Slider = ({
   };
 
   const handleRightClicked = e => {
-    const goToBeginning = factor <= (-1 * goBackFactor);
+    if (isTransitioning) {
+      return;
+    }
+
+    setIsTransitioning(true);
+    const goToBeginning = factor <= -1 * goBackFactor;
     goToBeginning ? setFactor(0) : setFactor(factor - 1);
 
     typeof onRightClicked === 'function' && onRightClicked(e);
   };
 
   return (
-    <div className={root}>
+    <div ref={sliderNodeRef} className={root}>
       <IconButton
         className={classNames(leftArrow, button)}
         onClick={handleLeftClicked}
@@ -113,15 +144,25 @@ const Slider = ({
         }}
         className={belt}
       >
-        {slides.map(({ headerIconUrl, headerIconAlt, text }, i) => (
-          <Slide
-            style={{left: `${leftOffset}px`}}
-            leftRightMargin={`${slideLeftRightMargin}px`}
-            key={i}
-          >
-            <SlideContent text={text} headerIconAlt={headerIconAlt} headerIconUrl={headerIconUrl} />
-          </Slide>
-        ))}
+        {children
+          ? Children.map(children, child => cloneElement(child, {
+            style: { left: `${leftOffset}px` },
+          }))
+          : slides.map(({
+            headerIconUrl, headerIconAlt, text, id,
+          }, i) => (
+            <Slide
+              style={{ left: `${leftOffset}px` }}
+              leftRightMargin={`${slideLeftRightMargin}px`}
+              key={id || i}
+            >
+              <SlideContent
+                text={text}
+                headerIconAlt={headerIconAlt}
+                headerIconUrl={headerIconUrl}
+              />
+            </Slide>
+          ))}
       </div>
       <IconButton
         className={classNames(rightArrow, button)}
@@ -148,6 +189,7 @@ Slider.propTypes = {
       text: PropTypes.string,
     }),
   ).isRequired,
+  onTransitionEnd: PropTypes.func,
 };
 
 export default Slider;
