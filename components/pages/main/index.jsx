@@ -1,12 +1,14 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { I18nContext } from 'next-i18next';
 import MainTemplate from '../../templates/main';
 import Footer from '../../organisms/footer';
 import AppBar from '../../organisms/app-bar';
 import { useTranslation, i18n } from '../../../i18n';
+
 
 /**
  * Represents the common page layout and structure
@@ -115,7 +117,10 @@ const MainPage = ({
   const languageChangeHandler = selectedLanguage => {
     i18n.changeLanguage(selectedLanguage);
   };
-  const currentLanguage = i18n.language;
+
+
+  const { i18n: { language } } = useContext(I18nContext);
+  const currentLanguage = language;
 
   const FOOTER_LANGUAGE_PROPS = {
     languageOptions,

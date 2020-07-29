@@ -7,9 +7,9 @@
     "build-storybook": "build-storybook",
     "lint": "eslint . --ext .jsx --ext .js",
     "lint-fix": "eslint --fix . --ext .jsx --ext .js",
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "node server.js NODE_ENV=production",
+    "start": "next start",
     "export": "yarn run build && next export"
   },
   "dependencies": {
@@ -29,9 +29,10 @@
     "i18next": "^19.4.2",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
-    "next-i18next": "^4.3.0",
-    "prop-types": "^15.7.2",
     "next": "9.4.2",
+    "next-i18next": "^5.1.0",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
