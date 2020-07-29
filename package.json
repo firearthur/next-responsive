@@ -9,7 +9,8 @@
     "lint-fix": "eslint --fix . --ext .jsx --ext .js",
     "dev": "node server.js",
     "build": "next build",
-    "start": "node server.js NODE_ENV=production"
+    "start": "node server.js NODE_ENV=production",
+    "export": "yarn run build && next export"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",

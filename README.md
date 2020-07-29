@@ -1,13 +1,27 @@
+# What is this?
+Funny you should ask! It's a front-end app I built as a take-home assessment test I was asked to complete within 48 hours (really 24, unless I didn't sleep then it'll actually be 48.) It serves as a showcase of what I can build in that small time window. Here are the original requirements:
+
+1. Write good quality code with mobile responsiveness.
+2. Choose and complete at least one of the following animation-specific tasks (done all):
+- Animate and fade in hero text
+- Animate cards in the grid section on hover
+- Animate and fade in cards in the equipment section, when in view.
+3. Choose at least one of the following JavaScript-specific tasks. Prefer a custom solution for these tasks (also done all):
+- Create a functioning reviews slider (repeating the reviews is acceptable)
+- Set up the language picker in the footer to "select" different languages (display a list of languages and replace the label when clicked)
+- Create a fixed header that hides once the user scrolls past the hero section
+4. Use custom `Open Sans` font that was provided.
+
+
 # Running the app
-1. Clone it or extract it!
+1. Clone it!
 2. cd into the root directory of it.
-3. run `yarn`.
+3. Run `yarn`.
 4. Copy `next.config.example.json` and rename your copy to `next.config.json`.
-5. Ask a college where to get the secrets and env vars to fill up `next.config.json`.
-6. Copy `.example.env` and rename your copy to `.env` then repeat step 5.
-7. Run `yarn dev`.
-8. Open Chrome on [Localhost](http://localhost:3333/).
-9. Enjoy!
+5. Copy `.example.env` and rename your copy to `.env`.
+6. Run `yarn dev`.
+7. Open Chrome on [Localhost](http://localhost:3333/).
+8. Enjoy!
 
 
 ## Notes:
@@ -15,7 +29,7 @@
 2. Apollo and GraphQl are setup and ready to be used.
 3. Storybook is setup and ready to be used with `yarn storybook`.
 4. Used Atomic Design. Tried to stick to its rules as much as the time span allowed.
-5. Every text that's abbreviated with `[s]` when you switch the language is a place holder for actual Spanish translation. 
+5. Every text that's abbreviated with `[s]` when you switch the language is a placeholder for actual Spanish translation. 
 
 
 # Things I Wanted to Show Case in This Project:
